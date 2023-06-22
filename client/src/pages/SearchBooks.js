@@ -71,7 +71,7 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-    const [saveBookMutation, {error}] = useMutation(SAVE_BOOK);
+    const [saveBookMutation, {error}] = useMutation(SAVED_BOOK);
     try {
       const response = await saveBookMutation(bookToSave, token);
 
