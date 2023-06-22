@@ -26,8 +26,6 @@ const resolvers = {
         deleteUser: async(parent, {_id})=>{
             const delUser = await User.findOneAndDelete(
                 {_id: user._id},
-                {$pull: {savedBooks: {bookId: params.bookId}}},
-                {new: true}
             )
             if (!delUser) {
                 return ({message: "Nobody here but us chickens"})
