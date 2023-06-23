@@ -2,6 +2,12 @@ const {Book, User} = require('../models')
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context)=> {
+            if (context.user) {
+                const userData = await user.findOne({_id:context.user._id})
+                return userData
+            }
+        },
         books: async ()=> {
             return Book.find({})
         },
@@ -11,7 +17,7 @@ const resolvers = {
         }
     },
     Mutation: {
-        createUser: async (parent, args) => {
+        addUser: async (parent, args) => {
             const user = await User.create(args);
             return user
         },
@@ -22,6 +28,11 @@ const resolvers = {
                 {new: true}
             )
             return saveB
+        },
+        removeBook: async ()=>{
+            const delBook = await User.findOneAndUpdate(
+                {_id: bookId}
+            )
         },
         deleteUser: async(parent, {_id})=>{
             const delUser = await User.findOneAndDelete(
