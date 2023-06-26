@@ -8,13 +8,6 @@ const resolvers = {
                 return userData
             }
         },
-        books: async ()=> {
-            return Book.find({})
-        },
-        users: async (parent, {_id})=>{
-            const params = _id ? {_id} : {};
-            return User.find(params)
-        }
     },
     Mutation: {
         addUser: async (parent, args) => {
@@ -34,15 +27,7 @@ const resolvers = {
                 {_id: bookId}
             )
         },
-        deleteUser: async(parent, {_id})=>{
-            const delUser = await User.findOneAndDelete(
-                {_id: user._id},
-            )
-            if (!delUser) {
-                return ({message: "Nobody here but us chickens"})
-            }
-            return delUser
-        }
+
 
     }
 }
